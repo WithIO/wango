@@ -1,0 +1,5 @@
+.idea
+*.un~
+*.swp
+*.pyc
+*.egg-info
