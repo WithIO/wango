@@ -16,7 +16,7 @@ pip install django_wools
 
 ### Storage
 
-#### `wango.storage.GzipManifestStaticFilesStorage`
+#### `django_wools.storage.GzipManifestStaticFilesStorage`
 
 That's a sub-class of the 
 [ManifestStaticFilesStorage](https://docs.djangoproject.com/en/3.0/ref/contrib/staticfiles/#manifeststaticfilesstorage)
@@ -25,7 +25,7 @@ is easy to pick up for nginx (or other static files server).
 
 ### Middlewares
 
-#### `wango.middlewares.NowMiddleware`
+#### `django_wools.middlewares.NowMiddleware`
 
 Suppose that you have a content that is available up until a given date. When
 the date is passed then everything related to this content expires. However,
