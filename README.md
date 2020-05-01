@@ -53,3 +53,24 @@ def my_view(request):
 
     return render(request, "something.html", {"now": request.now()})
 ```
+
+### Database
+
+#### `django_wools.db.require_lock`
+
+Provides a way to explicitly generate a PostgreSQL lock on a table.
+
+By example:
+
+```python
+from django.db.transaction import atomic
+from django_wools.db import require_lock
+
+from my_app.models import MyModel
+
+
+@atomic
+@require_lock(MyModel, 'ACCESS EXCLUSIVE')
+def myview(request):
+    # do stuff here
+```

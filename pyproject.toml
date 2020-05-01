@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "django_wools"
-version = "0.1.0"
+version = "0.1.1"
 description = "Django tools from WITH"
 authors = ["Rémy Sanchez <remy.sanchez@with-madrid.com>"]
 license = "WTFPL"
 readme = "README.md"
+repository = "https://github.com/WithIO/django-wools"
+homepage = "https://github.com/WithIO/django-wools"
 
 [tool.poetry.dependencies]
 python = "^3.6"
