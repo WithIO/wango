@@ -1,5 +1,7 @@
+from time import sleep
 from typing import Callable
 
+from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.utils.timezone import now
 
@@ -31,5 +33,27 @@ class NowMiddleware:
 
         fixed_now = now()
         object.__setattr__(request, "now", lambda: fixed_now)
+
+        return self.get_response(request)
+
+
+class SlowMiddleware:
+    """
+    That's a middleware that will simulate a latency on all requests.
+
+    Notes
+    -----
+    You can set it by putting the number of seconds you want to sleep in the
+    SLOW_MIDDLEWARE_LATENCY Django settings.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        to_sleep = getattr(settings, "SLOW_MIDDLEWARE_LATENCY", None)
+
+        if to_sleep:
+            sleep(to_sleep)
 
         return self.get_response(request)

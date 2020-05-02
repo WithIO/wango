@@ -54,6 +54,31 @@ def my_view(request):
     return render(request, "something.html", {"now": request.now()})
 ```
 
+#### `django_wools.middlewares.SlowMiddleware`
+
+When developing a SPA or hybrid app, you want to make sure that the app is
+structurally ready to handle load times from the server, even if the connection
+is a bit shaky. Also, you want to make sure that not too many requests are
+sent.
+
+In order for you to fully realize how slow your website is going to be on a bad
+connection, th e SlowMiddleware will automatically add a delay before replying
+to each request.
+
+Add this to your `settings.py`
+
+```python
+MIDDLEWARE = [
+    # ...
+    "django_wools.middlewares.SlowMiddleware",
+]
+
+SLOW_MIDDLEWARE_LATENCY = 1 if DEBUG else 0
+```
+
+By doing this, your requests will be added a 1s delay if the `DEBUG` mode is
+enabled.
+
 ### Database
 
 #### `django_wools.db.require_lock`
