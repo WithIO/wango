@@ -1,4 +1,8 @@
 from functools import wraps
+from typing import Text, Union
+
+from django.apps import apps
+from django.db.models import Model
 
 LOCK_MODES = (
     "ACCESS SHARE",
@@ -12,7 +16,7 @@ LOCK_MODES = (
 )
 
 
-def require_lock(model, lock):
+def require_lock(model: Union[Text, Model], lock: Text):
     """
     Decorator for PostgreSQL's table-level lock functionality
 
@@ -33,8 +37,16 @@ def require_lock(model, lock):
                 raise ValueError("%s is not a PostgreSQL supported lock mode.")
             from django.db import connection
 
+            if not isinstance(model, Model):
+                true_model = apps.get_model(model)
+            else:
+                true_model = model
+
             cursor = connection.cursor()
-            cursor.execute("LOCK TABLE %s IN %s MODE" % (model._meta.db_table, lock))
+            # noinspection PyProtectedMember
+            cursor.execute(
+                "LOCK TABLE %s IN %s MODE" % (true_model._meta.db_table, lock)
+            )
             return view_func(*args, **kwargs)
 
         return wrapper

@@ -1,5 +1,5 @@
-from django.forms import ModelForm
 from django.core.files.images import get_image_dimensions
+from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 
 
