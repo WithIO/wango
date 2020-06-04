@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django_wools"
-version = "0.1.3"
+version = "0.1.4"
 description = "Django tools from WITH"
 authors = ["Rémy Sanchez <remy.sanchez@with-madrid.com>"]
 license = "WTFPL"
