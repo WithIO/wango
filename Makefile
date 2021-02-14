@@ -1,5 +1,4 @@
 PYTHON_BIN ?= poetry run python
-ENV ?= pypitest
 
 install:
 	poetry install --no-root
@@ -11,3 +10,6 @@ black: install
 
 isort: install
 	$(PYTHON_BIN) -m isort -rc src
+
+publish:
+	poetry publish --build

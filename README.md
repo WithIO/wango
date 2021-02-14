@@ -99,3 +99,50 @@ from my_app.models import MyModel
 def myview(request):
     # do stuff here
 ```
+
+### Wagtail Images
+
+Several Wagtail-specific tags are provided to deal with images and more
+specifically responsive images. To use it:
+
+1. Add `django_wools` to `INSTALLED_APPS`
+2. Import `wools_for_wt_images` from your template
+
+```
+{% load wools_for_wt_images %}
+```
+
+Some specific settings can be set:
+
+- `WOOLS_MAX_PIXEL_RATIO` _(default: `3`)_ &mdash; Highest device pixel ratio
+  to support.
+- `WOOLS_INCREMENT_STEP_PERCENT` _(default: `(sqrt(2) - 1) * 100`)_ &mdash; The
+  percentage of increase from the base density to the next one. The default
+  values will generate `x1`, `x2` and `x4` with intermediate values that are
+  `x1.4142` and `x2.8284`.
+
+All the tags will be default generate WebP images with a PNG fallback. The
+fallback can be changed to JPEG and the main format has to be WebP.
+
+#### `image_fixed_size`
+
+This tag will generate a `<picture>` tag for an image whose size in pixels you
+known in advance. That picture size will be enforced in the HTML code with
+inline properties.
+
+Usage:
+
+```
+{% image_fixed_size max-500x500 %}
+```
+
+The arguments to this tag, in order, are:
+
+- `image` &mdash; The Wagtail-compatible image itself
+- `spec` &mdash; A spec like you would give to Wagtail (`fill-500x500`,
+   `max-500x500`, etc)
+- `fallback_format` &mdash; The format to fallback in case the browser doesn't
+  support WebP. Can either be `"jpeg"` or `"png"`. Defaults to `"png"`.
+- `lossless` &mdash; A boolean to enable losslessness of WebP. This does not
+  affect the fallback format, so if you want a lossless fallback as well you'll
+  need to use PNG.
