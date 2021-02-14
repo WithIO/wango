@@ -116,7 +116,7 @@ Some specific settings can be set:
 
 - `WOOLS_MAX_PIXEL_RATIO` _(default: `3`)_ &mdash; Highest device pixel ratio
   to support.
-- `WOOLS_INCREMENT_STEP_PERCENT` _(default: `(sqrt(2) - 1) * 100`) &mdash; The
+- `WOOLS_INCREMENT_STEP_PERCENT` _(default: `(sqrt(2) - 1) * 100`)_ &mdash; The
   percentage of increase from the base density to the next one. The default
   values will generate `x1`, `x2` and `x4` with intermediate values that are
   `x1.4142` and `x2.8284`.
