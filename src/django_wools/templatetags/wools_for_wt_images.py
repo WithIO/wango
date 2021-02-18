@@ -122,6 +122,7 @@ class WagtailSizeSpec(NamedTuple):
 def image_fixed_size(
     image: AbstractImage,
     spec: str,
+    css_class: str = "",
     fallback_format: str = "png",
     lossless: bool = False,
 ):
@@ -139,6 +140,8 @@ def image_fixed_size(
         Original Wagtail image
     spec
         Wagtail size spec
+    css_class
+        CSS class that will be added to the root <picture> element
     fallback_format
         The format to use for browsers that do not support WebP
     lossless
@@ -189,4 +192,5 @@ def image_fixed_size(
         size=dict(width=base_rendition.width, height=base_rendition.height),
         alt=image.default_alt_text,
         sources=sources,
+        css_class=css_class,
     )

@@ -1,5 +1,5 @@
 {% if base_url %}
-<picture>
+<picture{% if css_class %} class="{{ css_class }}"{% endif %}>
     {% for type, source in sources.items %}
     <source
         type="image/{{ type }}"
