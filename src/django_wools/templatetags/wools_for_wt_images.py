@@ -167,14 +167,22 @@ def image_fixed_size(
         sources[fmt] = dict(set=[], base=image.get_rendition(f"{spec}|format-{fmt}"))
 
         for width, density in generate_widths(parsed_spec.width):
+            if int(density) == density:
+                density = int(density)
+
+            rendition = image.get_rendition(
+                f"{parsed_spec.at_width(width)}|format-{fmt}"
+            )
+
             sources[fmt]["set"].append(
                 dict(
-                    rendition=image.get_rendition(
-                        f"{parsed_spec.at_width(width)}|format-{fmt}"
-                    ),
+                    rendition=rendition,
                     density=density,
+                    string=f"{rendition.url} {density}x",
                 )
             )
+
+        sources[fmt]["srcset"] = ", ".join(x["string"] for x in sources[fmt]["set"])
 
     return dict(
         base_url=base_rendition.url,
