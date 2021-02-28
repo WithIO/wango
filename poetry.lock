@@ -255,6 +255,14 @@ pytz = ">=2020.1"
 six = "*"
 
 [[package]]
+category = "main"
+description = "Extremely fast and smart HTML + JS + CSS minifier"
+name = "minify-html"
+optional = false
+python-versions = "*"
+version = "0.4.3"
+
+[[package]]
 category = "dev"
 description = "A Python library to read/write Excel 2010 xlsx/xlsm files"
 name = "openpyxl"
@@ -509,7 +517,7 @@ python-versions = "*"
 version = "1.3"
 
 [metadata]
-content-hash = "a4759cc5696cdd0834b7b94d07b511577d8cdde4a0ae44f20cb2679be52548c1"
+content-hash = "61031dd951b44ac53aa5ffe5690c07f6545d9c6845200a415ab9dac7c4cb57bc"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -599,6 +607,17 @@ jdcal = [
 ]
 l18n = [
     {file = "l18n-2020.6.1.tar.gz", hash = "sha256:ea7a65b2f0935b14601a3295f2c5e5e8b54126dd1e6a7fef4e44d2b8dd5b695a"},
+]
+minify-html = [
+    {file = "minify_html-0.4.3-cp37-cp37m-macosx_10_7_x86_64.whl", hash = "sha256:cd19eb1c85f84cd09fd69f4ff68c6940badb5da6070928dc20c384e648da7a35"},
+    {file = "minify_html-0.4.3-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:dfd806598631533db1ec35b7bcfadba0691a6d647946dbd3c411213805ce6ef0"},
+    {file = "minify_html-0.4.3-cp37-none-win_amd64.whl", hash = "sha256:ac7856b5ef61327774c0c863c83ec3fcb5f1514560b7b812055b77a30ce7856f"},
+    {file = "minify_html-0.4.3-cp38-cp38-macosx_10_7_x86_64.whl", hash = "sha256:8083e425f32b1874bedd953ee7875382fa8cbf4de8dc71ac8f73f03252871dc5"},
+    {file = "minify_html-0.4.3-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:c17bfa20b095749b0eb9cf16e9b5a7f38d680c9e412fac737b308fdcfe056b11"},
+    {file = "minify_html-0.4.3-cp38-none-win_amd64.whl", hash = "sha256:e44b95a1ab9ab22f15383312d24b2abb5701714a79d896dde2129d28595cb0f0"},
+    {file = "minify_html-0.4.3-cp39-cp39-macosx_10_7_x86_64.whl", hash = "sha256:e5060de649adfe5df7166959b81d28d25383dad2afddebc92519682a1422bf6d"},
+    {file = "minify_html-0.4.3-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:d40500e40b37678ba63dcfaaa76e7d5e8deb80d6482f8462582d1b6b7807b308"},
+    {file = "minify_html-0.4.3-cp39-none-win_amd64.whl", hash = "sha256:111d25d17ddcd00814bd76b400ccb9de0f8a48f05a8d036d2d11fd2d93d21735"},
 ]
 openpyxl = [
     {file = "openpyxl-3.0.6-py2.py3-none-any.whl", hash = "sha256:1a4b3869c2500b5c713e8e28341cdada49ecfcff1b10cd9006945f5bcefc090d"},
