@@ -14,6 +14,9 @@ zopflipy = ">1.1"
 psutil = ">2.0.0"
 tqdm = ">3.0.0"
 django = ">1.7.0"
+minify-html = "^0.4.3"
+httpx = "^0.17.0"
+fonttools = {extras = ["woff"], version = "^4.21.1"}
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"

@@ -146,3 +146,123 @@ The arguments to this tag, in order, are:
 - `lossless` &mdash; A boolean to enable losslessness of WebP. This does not
   affect the fallback format, so if you want a lossless fallback as well you'll
   need to use PNG.
+
+### Fonts
+
+Wools offers a way to easily download and manage fonts from Google fonts or
+other pluggable providers. The current version only works with Google fonts,
+however you are free to create your own sources and converters that will be
+able to work out what you need.
+
+#### Getting started
+
+The first thing would be to put the font families that you want into the
+`settings.py` of your project. By example:
+
+```python
+WOOLS_FONTS_FAMILIES = [
+    ('google', 'Roboto'),
+    ('google', 'Nunito'),
+]
+```
+
+Here we're getting Roboto and Nunito from Google Fonts.
+
+> *Note* &mdash; Please make sure that `django_wools` is in your
+> `INSTALLED_APPS` for this to work.
+
+Now let's run the download command:
+
+```
+./manage.py wools_import_fonts
+```
+
+And finally, let's put this tag in your page's HTML:
+
+```html
+{% load wools_fonts %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="{{ CURRENT_LANG }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ title }}</title>
+
+    {% fonts_head %}
+</head>
+</html>
+```
+
+And that's it! The fonts you asked for will be loaded automatically.
+
+#### Configuration options
+
+There is several settings that you can adjust.
+
+##### `WOOLS_FONTS_DIR`
+
+Directory name relative to the static root where the files will be stored.
+
+> *Default*: `"fonts"`
+
+##### `WOOLS_STATIC_ROOT`
+
+Absolute path to the static root that you want to use to store the fonts. If
+set to none, the first value from `STATICFILES_DIRS` will be used instead.
+
+> *Default*: `None`
+
+##### `WOOLS_FAMILIES`
+
+Font families that you want to load. It's a list of (provider, family) tuples.
+
+Instead of providing tuples, you can provide 
+`django_wools.settings_types.FontFamily` instances directly. In case you don't
+provide them, the tuple will be passed as *args to the constructor of
+`FontFamily`.
+
+> *Default*: `[]`
+
+##### `WOOLS_FONTS_PROVIDERS`
+
+Dictionary of available font providers. The key is the name of the provider
+while the value is the FQN of the class.
+
+If you want to provide your own provider, you can specifcy any class as long as
+it implements the `django_wools.fonts.WoolFontProvider` interface.
+
+> *Default*: `{"google": "django_wools.fonts.GoogleFontsProvider"}`
+
+##### `WOOLS_FONTS_FORMATS`
+
+List of font formats that you want. Choices are `ttf`, `woff`, `woff2`, `eot`,
+`svg`, `otf`. You can also directly provide instances of
+`django_wools.settings_types.FontFormat`.
+
+Font formats will be proposed in the same order to the browser.
+
+> *Default*: `[FontFormat.woff2, FontFormat.ttf]`
+
+##### `WOOLS_FONTS_CONVERSIONS`
+
+Font sources will provide the fonts in a given format (most likely TTF) but in
+order to produce the formats expected by `WOOLS_FONTS_FORMATS` you need to
+convert those fonts.
+
+This is a dictionary that as key takes a tuple of (from_format, to_format) and
+as value a sequential list of converters to use.
+
+By example, suppose that you only have "TTF to WOFF2" and "EOT to TTF" avaible
+and your source is in EOT while formats are TTF and WOFF2. In that case you can
+specificy that the conversion from "EOT to WOFF2" goes through TTF.
+
+> *Default*:
+
+```python
+{
+    (FontFormat.ttf, FontFormat.woff): ["django_wools.fonts.TtfToWoff"],
+    (FontFormat.ttf, FontFormat.woff2): ["django_wools.fonts.TtfToWoff2"],
+}
+```
