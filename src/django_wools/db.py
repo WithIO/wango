@@ -37,7 +37,7 @@ def require_lock(model: Union[Text, Model], lock: Text):
                 raise ValueError("%s is not a PostgreSQL supported lock mode.")
             from django.db import connection
 
-            if not isinstance(model, Model):
+            if type(model) is Text:
                 true_model = apps.get_model(model)
             else:
                 true_model = model
