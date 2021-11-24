@@ -141,6 +141,7 @@ The arguments to this tag, in order, are:
 - `image` &mdash; The Wagtail-compatible image itself
 - `spec` &mdash; A spec like you would give to Wagtail (`fill-500x500`,
    `max-500x500`, etc)
+- `css_class` &mdash; CSS class that will be added to the root <picture> element.
 - `fallback_format` &mdash; The format to fallback in case the browser doesn't
   support WebP. Can either be `"jpeg"` or `"png"`. Defaults to `"png"`.
 - `lossless` &mdash; A boolean to enable losslessness of WebP. This does not

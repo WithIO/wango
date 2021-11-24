@@ -1,7 +1,7 @@
 import re
 from enum import Enum
 from typing import Iterator, NamedTuple, Optional
-
+from wagtail.images.models import SourceImageIOError
 from django import template
 from wagtail.images.models import AbstractImage
 
@@ -157,7 +157,13 @@ def image_fixed_size(
     if not isinstance(image, AbstractImage):
         return {}
 
-    base_rendition = image.get_rendition(f"{spec}|format-{fallback_format}")
+    try:
+        base_rendition = image.get_rendition(f"{spec}|format-{fallback_format}")
+    except SourceImageIOError as e:
+        """
+        An error can exist if the image has been manually deleted from the S3 bucket for example
+        """
+        return dict(spec_width=parsed_spec.width, spec_height=parsed_spec.height)
 
     sources = {}
 
