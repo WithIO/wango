@@ -3,6 +3,7 @@
 *.un~
 .pytest_cache
 .idea
+.vscode
 dist
 *.egg-info
 /docs/build/
