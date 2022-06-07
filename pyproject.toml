@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django_wools"
-version = "0.2.0a5"
+version = "0.2.0"
 description = "Django tools from WITH"
 authors = ["Rémy Sanchez <remy.sanchez@with-madrid.com>"]
 license = "WTFPL"
@@ -14,8 +14,8 @@ zopflipy = ">1.1"
 psutil = ">2.0.0"
 tqdm = ">3.0.0"
 django = ">1.7.0"
-minify-html = "^0.4.3"
-httpx = "^0.17.0"
+minify-html = "^0.7.2"
+httpx = "<2.0.0"
 fonttools = {extras = ["woff"], version = "^4.21.1"}
 
 [tool.poetry.dev-dependencies]
