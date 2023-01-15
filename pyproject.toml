@@ -14,7 +14,7 @@ zopflipy = ">1.1"
 psutil = ">2.0.0"
 tqdm = ">3.0.0"
 django = ">1.7.0"
-minify-html = "^0.7.2"
+minify-html = ">0.7.2"
 httpx = "<2.0.0"
 fonttools = {extras = ["woff"], version = "^4.21.1"}
 
