@@ -125,6 +125,7 @@ def image_fixed_size(
     css_class: str = "",
     fallback_format: str = "png",
     lossless: bool = False,
+    lazy_loading: bool = False,
 ):
     """
     This tag manages images whose size on screen stay the same and simply
@@ -147,6 +148,8 @@ def image_fixed_size(
     lossless
         Enables lossless compression for WebP. If you want the fallback to also
         be lossless, you need to use "png" as fallback_format.
+    lazy_loading
+        Enables image loading as 'lazy'.
     """
 
     parsed_spec = WagtailSizeSpec.parse(spec)
@@ -199,4 +202,5 @@ def image_fixed_size(
         alt=image.default_alt_text,
         sources=sources,
         css_class=css_class,
+        lazy_loading=lazy_loading,
     )
