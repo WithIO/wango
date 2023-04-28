@@ -12,6 +12,7 @@
         alt="{{ alt }}"
         width="{{ size.width }}"
         height="{{ size.height }}"
+        {% if lazy_loading %}loading="lazy"{% endif %}
     >
 </picture>
 {% elif spec_width and spec_height %}
